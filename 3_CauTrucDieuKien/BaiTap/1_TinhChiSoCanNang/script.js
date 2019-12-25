@@ -9,7 +9,7 @@ function showBMI() {
     else if (bmi < 25.0)
         document.getElementById('result').textContent = 'Normal';
     else if (bmi < 30.0)
-        ddocument.getElementById('result').textContent = 'Overweight';
+        document.getElementById('result').textContent = 'Overweight';
     else
         document.getElementById('result').textContent = 'Obese';
 
