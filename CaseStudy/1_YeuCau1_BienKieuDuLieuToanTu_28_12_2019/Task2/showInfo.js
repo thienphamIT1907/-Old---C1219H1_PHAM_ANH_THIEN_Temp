@@ -31,16 +31,12 @@ function showInfomation() {
             break;
     }
 
-<<<<<<< HEAD
-=======
     // let showDiv = document.getElementById('show-infomation');
     // if(showDiv.style.display === 'block') {
     //    showDiv.style.display = 'none';
     // } else {
     //    showDiv.style.display = 'block';
     // }
-
->>>>>>> 9678c648291fd604f90a43cb7a0641db96d55cca
     let infoArr = [ten, cmnd, ngaySinh, email, diaChi, loaiKH, giamGia, soLuong, soNgayThue, loaiDV, loaiPhong];
     document.getElementById('info-list').innerHTML = infoArr.map(item => '<li>' + item + '</li>').join('');
     document.getElementById('total-pay').innerText = `Giá tiền: ${giaTien} $`;
