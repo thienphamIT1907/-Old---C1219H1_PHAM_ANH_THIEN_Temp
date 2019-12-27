@@ -21,6 +21,7 @@ function multiplicationBtn() {
     document.getElementById('result').innerHTML = 'result: ' + result ;
 }
 function divisionBtn() {
+
     let firstNum = Number(document.getElementById('firstNum').value);
     let secondNum = Number(document.getElementById('secondNum').value);
     let result = firstNum / secondNum;
