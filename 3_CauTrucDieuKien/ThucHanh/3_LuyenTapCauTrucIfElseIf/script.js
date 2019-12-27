@@ -7,7 +7,7 @@ if (userName === 'Admin') {
     } else if (password === null) {
         alert('Canceled')
     } else alert('Wrong password')
-} else if (userName == null) {
+} else if (userName === null) {
     alert('Canceled');
 } else {
     alert("I don't know you");
