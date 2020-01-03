@@ -1,13 +1,12 @@
 let limitPrime = window.prompt('Bạn muốn nhập bao nhiêu số?: ');
-let countInputPrime = 0;
+let inputPrime = 0;
 
 document.write('Các số nguyên tố trong dãy bạn vừa nhập: ');
-while(countInputPrime < limitPrime) {
-    let num = parseInt(window.prompt('Nhập số thứ ' + (countInputPrime + 1) + ': ' ));
-    if(isPrime(num)) {
-        document.write(num + ' ');
+while(inputPrime < limitPrime) {
+    if(isPrime(inputPrime)) {
+        document.write(inputPrime + ' ');
     }
-    countInputPrime++;
+    inputPrime++;
 }
 
 function isPrime(num) {
