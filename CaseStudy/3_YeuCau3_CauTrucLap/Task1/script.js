@@ -1,22 +1,70 @@
 function registerButton() {
-    let name = document.getElementById('input-name').value;
-    let identityCard = document.getElementById('input-identity-card').value;
-    let dateOfBirth = document.getElementById('input-date-of-birth').value;
-    let email = document.getElementById('input-email').value;
-    let address = document.getElementById('input-address').value;
-    let custommersType = document.getElementById('customers-type').value;
-    let discount = document.getElementById('input-discount').value;
-    let amount = document.getElementById('input-amount').value;
-    let dateOfHire = document.getElementById('input-date-of-hire').value;
-    let servicesType = document.getElementById('services-type').value;
-    let roomsType = document.getElementById('rooms-type').value;
+    // let name = document.getElementById('input-name').value;
+    // let identityCard = document.getElementById('input-identity-card').value;
+    // let dateOfBirth = document.getElementById('input-date-of-birth').value;
+    // let email = document.getElementById('input-email').value;
+    // let address = document.getElementById('input-address').value;
+    // let custommersType = document.getElementById('customers-type').value;
+    // let discount = document.getElementById('input-discount').value;
+    // let amount = document.getElementById('input-amount').value;
+    // let dateOfHire = document.getElementById('input-date-of-hire').value;
+    // let servicesType = document.getElementById('services-type').value;
+    // let roomsType = document.getElementById('rooms-type').value;
 
-    if(email.indexOf('@gmail.com') == -1 || email === null) {
-        alert('Error ! Email validate: abc@gmail.com')
-        document.getElementById('input-email').value = '';
-        document.getElementById('input-email').focus();
-    }
-    
+    let checkValidate = false;
+    let email;
+    let birthday;
+    do {
+        checkValidate = true;
+        email = window.prompt('Enter email:');
+        let countDot = 0;
+        let countAt = 0;
+        for(let i = 0; i < email.length; i++) {
+            if(email.charAt(i) === '@') {
+                countAt++;
+            }
+            if(email.charAt(i) === '.') {
+                countDot++;
+            }
+        }
+        if(countAt !== 1 || countDot < 1) {
+            checkValidate = false;
+            alert('Email Invalid! Try again!')
+        }
+    }while(!checkValidate)
+
+    do {
+        checkValidate = false;
+        birthday = window.prompt('Enter birthday:');
+        if(birthday.charAt(2) !== '/' || birthday.charAt(5) !== '/') {
+            alert('Birthday invalid ! Try again !');
+            continue;
+        }
+        let day = birthday.substring(0,2);
+        let month = birthday.substring(3,5);
+        let year = birthday.substring(6,10);
+
+        if(!isNaN(day) && !isNaN(month) && !isNaN(year)) { //kiem tra ngay thang nam la chuoi
+            day = Number.parseFloat(day);   //parse chuoi qua so float
+            month = Number.parseFloat(month);
+            year = Number.parseFloat(year);
+            if(Number.isInteger(day) && Number.isInteger(month) && Number.isInteger(year)) { // kiem tra so float phai integer khong
+                if(day > 0 && day < 32 && month > 0 && month < 13 && year >= 1960 && year <= 2019) {
+                    checkValidate = true;
+                }
+
+            }
+        }
+        if(!checkValidate) {
+            alert('Birthday invalid ! Try again !');
+        }
+    }while(!checkValidate)
+
+    alert('Email:' + email + '\n' + 'Birthday: '+ birthday);
+
+
+
+
 
     //alert('Register Success !');
 }
@@ -59,7 +107,7 @@ function menuButton() {
             alert(showListProperty());
         } else alert('Exit !')
     }
-    
+
     //MENU 1 - SHOW INFORMATION
     function Menu1_ShowInformation() {
         alert('==== CUSTOMER INFORMATION ====' + '\n'+ showListProperty());
@@ -157,7 +205,7 @@ function menuButton() {
                 pay = 100 * dateOfHire * (1 - discount / 100);
                 break;
         }
-    
+
         // CHECK ADDRESS
         if(address.search('Đà Nẵng') !== -1) {
             pay -= 20;
@@ -166,12 +214,12 @@ function menuButton() {
         } else if(address.search('Quảng Nam') !== -1) {
             pay -= 5;
         }
-    
+
         // CHECK DATE OF HIRE
         if(dateOfHire > 7) {pay -= 30;}
         if(dateOfHire >= 5 && dateOfHire <= 7) {pay -= 20;}
         if(dateOfHire >=2 && dateOfHire <= 4) {pay -=10;}
-    
+
         // CHECK CUSTOMER TYPE
         switch(custommersType) {
             case 'Diamond': pay -= 15;
@@ -186,15 +234,15 @@ function menuButton() {
             default:
                 break;
         }
-        
+
         // CHECK AGE + BIRTHDAY
         let currenYear = new Date().getFullYear();
         let birthday = new Date(dateOfBirth).getFullYear();
         let ageCustomer = currenYear - birthday;
-    
+
         if(ageCustomer > 30 && address.search('Đà Nẵng') !== -1) {pay -= 2;}
         if(ageCustomer >= 20 && ageCustomer <= 30  && address.search('Đà Nẵng') !== -1) {pay -= 1;}
-    
+
         alert('PAY INFORMATION:' + '\n'
             + '-----------------------------------' + '\n'
             + 'Address: ' + address + '\n'
@@ -228,4 +276,3 @@ function menuButton() {
         default: alert('Failed!');
     }
 }
-
