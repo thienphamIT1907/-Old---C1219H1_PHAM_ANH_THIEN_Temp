@@ -19,52 +19,49 @@ function registerButton() {
         email = window.prompt('Enter email:');
         let countDot = 0;
         let countAt = 0;
-        for(let i = 0; i < email.length; i++) {
-            if(email.charAt(i) === '@') {
+        for (let i = 0; i < email.length; i++) {
+            if (email.charAt(i) === '@') {
                 countAt++;
             }
-            if(email.charAt(i) === '.') {
+            if (email.charAt(i) === '.') {
                 countDot++;
             }
         }
-        if(countAt !== 1 || countDot < 1) {
+        if (countAt !== 1 || countDot < 1) {
             checkValidate = false;
             alert('Email Invalid! Try again!')
         }
-    }while(!checkValidate)
+    } while (!checkValidate)
 
     do {
         checkValidate = false;
         birthday = window.prompt('Enter birthday:');
-        if(birthday.charAt(2) !== '/' || birthday.charAt(5) !== '/') {
+        if (birthday.charAt(2) !== '/' || birthday.charAt(5) !== '/') {
             alert('Birthday invalid ! Try again !');
             continue;
         }
-        let day = birthday.substring(0,2);
-        let month = birthday.substring(3,5);
-        let year = birthday.substring(6,10);
+        let day = birthday.substring(0, 2);
+        let month = birthday.substring(3, 5);
+        let year = birthday.substring(6, 10);
 
-        if(!isNaN(day) && !isNaN(month) && !isNaN(year)) { //kiem tra ngay thang nam la chuoi
+        if (!isNaN(day) && !isNaN(month) && !isNaN(year)) { //kiem tra ngay thang nam la chuoi
             day = Number.parseFloat(day);   //parse chuoi qua so float
             month = Number.parseFloat(month);
             year = Number.parseFloat(year);
-            if(Number.isInteger(day) && Number.isInteger(month) && Number.isInteger(year)) { // kiem tra so float phai integer khong
-                if(day > 0 && day < 32 && month > 0 && month < 13 && year >= 1960 && year <= 2019) {
+            if (Number.isInteger(day) && Number.isInteger(month) && Number.isInteger(year)) { // kiem tra so float phai integer khong
+                if (day > 0 && day < 32 && month > 0 && month < 13 && year >= 1960 && year <= 2019) {
                     checkValidate = true;
                 }
 
             }
         }
-        if(!checkValidate) {
+        if (!checkValidate) {
             alert('Birthday invalid ! Try again !');
         }
-    }while(!checkValidate)
+    } while (!checkValidate);
 
-    alert('Email:' + email + '\n' + 'Birthday: '+ birthday);
+    alert('Email:' + email + '\n' + 'Birthday: ' + birthday);
 
-
-
-    
 
     //alert('Register Success !');
 }
@@ -88,40 +85,40 @@ function menuButton() {
     function showListProperty() {
         return content =
             '1 - Name : ' + name + '\n'
-        +   '2 - Identity Card: ' + identityCard + '\n'
-        +   '3 - Date of birth: ' + dateOfBirth + '\n'
-        +   '4 - Email: ' + email + '\n'
-        +   '5 - Address: ' + address + '\n'
-        +   '6 - Customers Type: ' + custommersType + '\n'
-        +   '7 - Discount: ' + discount + '%' + '\n'
-        +   '8 - Amount: ' + amount + '\n'
-        +   '9 - Date Of Hire: ' + dateOfHire + '\n'
-        +   '10 - Services Type: ' + servicesType + '\n'
-        +   '11 - Rooms Type: ' + roomsType + '\n';
+            + '2 - Identity Card: ' + identityCard + '\n'
+            + '3 - Date of birth: ' + dateOfBirth + '\n'
+            + '4 - Email: ' + email + '\n'
+            + '5 - Address: ' + address + '\n'
+            + '6 - Customers Type: ' + custommersType + '\n'
+            + '7 - Discount: ' + discount + '%' + '\n'
+            + '8 - Amount: ' + amount + '\n'
+            + '9 - Date Of Hire: ' + dateOfHire + '\n'
+            + '10 - Services Type: ' + servicesType + '\n'
+            + '11 - Rooms Type: ' + roomsType + '\n';
     }
 
     //REVIEW AFTER EDIT
     function checkReview() {
         let check = confirm('Done ! Do you want to review new information ?');
-        if(check) {
+        if (check) {
             alert(showListProperty());
         } else alert('Exit !')
     }
-    
+
     //MENU 1 - SHOW INFORMATION
     function Menu1_ShowInformation() {
-        alert('==== CUSTOMER INFORMATION ====' + '\n'+ showListProperty());
+        alert('==== CUSTOMER INFORMATION ====' + '\n' + showListProperty());
     }
 
     //MENU2 - EDIT INFOMATION
     function Menu2_EditInformation() {
         let chooseToEdit = window.prompt(
-            'Choose number of property to edit: ' +'\n'
+            'Choose number of property to edit: ' + '\n'
             + '--------------------------------------' + '\n'
             + showListProperty()
         );
 
-        switch(chooseToEdit) {
+        switch (chooseToEdit) {
             case '1':
                 let nameEdit = window.prompt('Edit Name: ');
                 name = nameEdit;
@@ -188,7 +185,8 @@ function menuButton() {
                 document.getElementById('rooms-type').value = roomsType;
                 checkReview();
                 break;
-            default: alert('Failed!');
+            default:
+                alert('Failed!');
         }
     }
 
@@ -205,44 +203,58 @@ function menuButton() {
                 pay = 100 * dateOfHire * (1 - discount / 100);
                 break;
         }
-    
+
         // CHECK ADDRESS
-        if(address.search('Đà Nẵng') !== -1) {
+        if (address.search('Đà Nẵng') !== -1) {
             pay -= 20;
-        } else if(address.search('Huế') !== -1) {
+        } else if (address.search('Huế') !== -1) {
             pay -= 10;
-        } else if(address.search('Quảng Nam') !== -1) {
+        } else if (address.search('Quảng Nam') !== -1) {
             pay -= 5;
         }
-    
+
         // CHECK DATE OF HIRE
-        if(dateOfHire > 7) {pay -= 30;}
-        if(dateOfHire >= 5 && dateOfHire <= 7) {pay -= 20;}
-        if(dateOfHire >=2 && dateOfHire <= 4) {pay -=10;}
-    
+        if (dateOfHire > 7) {
+            pay -= 30;
+        }
+        if (dateOfHire >= 5 && dateOfHire <= 7) {
+            pay -= 20;
+        }
+        if (dateOfHire >= 2 && dateOfHire <= 4) {
+            pay -= 10;
+        }
+
         // CHECK CUSTOMER TYPE
-        switch(custommersType) {
-            case 'Diamond': pay -= 15;
+        switch (custommersType) {
+            case 'Diamond':
+                pay -= 15;
                 break;
-            case 'Platinum': pay -= 10;
+            case 'Platinum':
+                pay -= 10;
                 break;
-            case 'Gold': pay -= 5;
+            case 'Gold':
+                pay -= 5;
                 break;
-            case 'Silver': pay -= 2;
+            case 'Silver':
+                pay -= 2;
                 break;
             case 'Member':
             default:
                 break;
         }
-        
+
         // CHECK AGE + BIRTHDAY
         let currenYear = new Date().getFullYear();
         let birthday = new Date(dateOfBirth).getFullYear();
         let ageCustomer = currenYear - birthday;
-    
-        if(ageCustomer > 30 && address.search('Đà Nẵng') !== -1) {pay -= 2;}
-        if(ageCustomer >= 20 && ageCustomer <= 30  && address.search('Đà Nẵng') !== -1) {pay -= 1;}
-    
+
+        if (ageCustomer > 30 && address.search('Đà Nẵng') !== -1) {
+            pay -= 2;
+        }
+        if (ageCustomer >= 20 && ageCustomer <= 30 && address.search('Đà Nẵng') !== -1) {
+            pay -= 1;
+        }
+
         alert('PAY INFORMATION:' + '\n'
             + '-----------------------------------' + '\n'
             + 'Address: ' + address + '\n'
@@ -251,29 +263,34 @@ function menuButton() {
             + 'Age: ' + ageCustomer + '\n'
             + 'Discount: ' + discount + ' %' + '\n'
             + '-----------------------------------' + '\n'
-            + 'TOTAL PAY: ' + pay  + ' $'
+            + 'TOTAL PAY: ' + pay + ' $'
         );
     }
 
     let choose = window.prompt(
         '1. Show Information Customer' + '\n'
-        +   '2. Edit Information Customer' + '\n'
-        +   '3. Show the amount to be paid after discount ' + '\n'
-        +   '0. Exit' + '\n'
-        +   '--------------------' + '\n'
-        +   'Your Choose: '
+        + '2. Edit Information Customer' + '\n'
+        + '3. Show the amount to be paid after discount ' + '\n'
+        + '0. Exit' + '\n'
+        + '--------------------' + '\n'
+        + 'Your Choose: '
     );
 
-    switch(choose) {
-        case '1': Menu1_ShowInformation();
+    switch (choose) {
+        case '1':
+            Menu1_ShowInformation();
             break;
-        case '2': Menu2_EditInformation();
+        case '2':
+            Menu2_EditInformation();
             break;
-        case '3': Menu3_ShowAmountAfterDiscount();
+        case '3':
+            Menu3_ShowAmountAfterDiscount();
             break;
-        case '0': alert('Exit !');
+        case '0':
+            alert('Exit !');
             break;
-        default: alert('Failed!');
+        default:
+            alert('Failed!');
     }
 }
 
