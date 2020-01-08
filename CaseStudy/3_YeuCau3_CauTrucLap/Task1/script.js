@@ -11,6 +11,7 @@ function registerButton() {
     // let servicesType = document.getElementById('services-type').value;
     // let roomsType = document.getElementById('rooms-type').value;
 
+    
     let checkValidate = false;
     let email;
     let birthday;
