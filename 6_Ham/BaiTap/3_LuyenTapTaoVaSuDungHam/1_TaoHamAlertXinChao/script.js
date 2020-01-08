@@ -1,3 +1,3 @@
 function alertMessage() {
-    alert('Xin chao');
+    alert('Xin chào');
 }
