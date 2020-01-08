@@ -1,19 +1,14 @@
 function registerButton() {
-    // let name = document.getElementById('input-name').value;
-    // let identityCard = document.getElementById('input-identity-card').value;
-    // let dateOfBirth = document.getElementById('input-date-of-birth').value;
-    // let email = document.getElementById('input-email').value;
-    // let address = document.getElementById('input-address').value;
-    // let custommersType = document.getElementById('customers-type').value;
-    // let discount = document.getElementById('input-discount').value;
-    // let amount = document.getElementById('input-amount').value;
-    // let dateOfHire = document.getElementById('input-date-of-hire').value;
-    // let servicesType = document.getElementById('services-type').value;
-    // let roomsType = document.getElementById('rooms-type').value;
-
+    //yeucau3 - task1
     let checkValidate = false;
     let email;
     let birthday;
+    let identityCard;
+    let discount;
+    let amount;
+    let dateOfHire;
+
+    //validate email
     do {
         checkValidate = true;
         email = window.prompt('Enter email:');
@@ -33,6 +28,7 @@ function registerButton() {
         }
     }while(!checkValidate)
 
+    //validate birthday
     do {
         checkValidate = false;
         birthday = window.prompt('Enter birthday:');
@@ -44,7 +40,7 @@ function registerButton() {
         let month = birthday.substring(3,5);
         let year = birthday.substring(6,10);
 
-        if(!isNaN(day) && !isNaN(month) && !isNaN(year)) { //kiem tra ngay thang nam la chuoi
+        if(!isNaN(day) && !isNaN(month) && !isNaN(year)) { //kiem tra ngay thang nam la so
             day = Number.parseFloat(day);   //parse chuoi qua so float
             month = Number.parseFloat(month);
             year = Number.parseFloat(year);
@@ -52,7 +48,6 @@ function registerButton() {
                 if(day > 0 && day < 32 && month > 0 && month < 13 && year >= 1960 && year <= 2019) {
                     checkValidate = true;
                 }
-
             }
         }
         if(!checkValidate) {
@@ -60,11 +55,73 @@ function registerButton() {
         }
     }while(!checkValidate)
 
-    alert('Email:' + email + '\n' + 'Birthday: '+ birthday);
+    //validate idcard
+    do{
+        checkValidate = true;
+        identityCard = window.prompt('Enter ID card:');
+        if(isNaN(identityCard)) { //kiem tra id card co phai la chuoi k. true -> continue
+            alert('ID card Invalid!');
+            continue;
+        }
+        identityCard = Number.parseFloat(identityCard);
+        if(!Number.isInteger(identityCard)) {
+            alert('ID card Invalid!');
+            continue;
+        }
+        if(identityCard >= 100000000 && identityCard <= 999999999) {
+            checkValidate = true;
+        } else {
+            alert('ID card Invalid!');
+        }
+    }while(!checkValidate);
+
+    alert('Email:' + email + '\n' + 'Birthday: '+ birthday + '\n' + 'Id card: ' + identityCard);
 
 
+    //validate discount
+     do {
+        checkValidate = false;
+        discount = window.prompt('Enter discount:');
+        if(!isNaN(discount)) {
+            discount = Number.parseFloat(discount);
+            if(discount >= 0) {
+                checkValidate = true;
+            }
+        }
+        if(!checkValidate) {
+            alert('Discount Invalid!')
+        }
+     }while(!checkValidate)
 
+     // validate amount
+     do {
+        checkValidate = false;
+        amount = window.prompt('Enter amount:');
+        if(!isNaN(amount)) {
+            amount = Number.parseFloat(amount);
+            if(amount >= 0 && Number.isInteger(amount)) {
+                checkValidate = true;
+            }
+        }
+        if(!checkValidate) {
+            alert('Amount Invalid!');
+        }
+     }while(!checkValidate);
 
+     //validate date of hire
+     do {
+         checkValidate = false;
+         dateOfHire = window.prompt('Enter date of hire:');
+         if(!isNaN(dateOfHire)) {
+            dateOfHire = Number.parseFloat(dateOfHire);
+            if(dateOfHire >= 0 && Number.isInteger(dateOfHire)) {
+                checkValidate = true;
+            }
+        }
+        if(!checkValidate) {
+            alert('Date of hire Invalid!');
+        }
+     } while (!checkValidate);
 
     //alert('Register Success !');
 }
