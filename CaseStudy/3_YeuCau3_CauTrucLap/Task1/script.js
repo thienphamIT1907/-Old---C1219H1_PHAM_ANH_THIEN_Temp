@@ -20,6 +20,25 @@ function registerButton() {
     let amount;
     let dateOfHire;
 
+    //yeucau3 - task2
+    let name = prompt('Enter Customer\'s name:');
+    let nameStandard = ''; //khai bao bien de cong don ten sau khi dc validate
+    name = name.trim().toLocaleLowerCase();
+    for (let i = 0; i < name.length; i++) {
+        if (name.charAt(i) === ' ' && name.charAt(i+1) === ' ') { //kiemtra 2 ki tu lien tiep co phai space khong
+            continue;
+        }
+        //check vi tri dau de in hoa va vi tri phia trc no la khoang trang thi in hoa
+        if(i ===  0 || name.charAt(i-1) === ' ') {
+            nameStandard += name.charAt(i).toLocaleUpperCase();
+            continue // neu k continue se thuc hien tiep dong` duoi'
+        }
+        nameStandard += name.charAt(i); //cong don chu cai vao`
+    }
+    name = nameStandard;
+
+    console.log(name);
+
     //validate email
     do {
         checkValidate = true;
