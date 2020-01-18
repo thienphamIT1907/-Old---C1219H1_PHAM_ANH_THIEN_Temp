@@ -55,7 +55,7 @@ function registerButton() {
         }
         if(countAt !== 1 || countDot < 1) {
             checkValidate = false;
-            alert('Email Invalid! Try again!')
+            alert('Email Invalid! Try again!');
         }
     }while(!checkValidate);
 
